@@ -1,0 +1,34 @@
+server {
+    listen 80 default_server;
+    access_log /logs/nginx/nginx.access.log;
+    error_log /logs/nginx/nginx.error.log;
+
+    # the domain name it will serve for
+    server_name .example.com; # substitute your machine's IP address or FQDN
+    charset     utf-8;
+
+    # max upload size
+    client_max_body_size 75M;   # adjust to taste
+
+    location /static {
+        autoindex on;
+        expires  30d;
+        allow all;
+        alias   /opt/djanker-project/djanker/static;
+    }
+
+    location /media {
+        autoindex on;
+        expires  30d;
+        allow all;
+        alias   /opt/djanker-project/djanker/media;
+    }
+
+
+    # Finally, send all non-media requests to the Django server.
+    location / {
+        uwsgi_pass  django;
+        include     /opt/djanker-project/uwsgi_params;
+        }
+    }
+}
