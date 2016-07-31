@@ -16,7 +16,7 @@ if [ "$DJANGO_PRODUCTION" == "false" ]; then
         sleep 1
     done
     echo "MySQL daemon is running; creating database..."
-    mysql -uroot -e "CREATE DATABASE $MYSQL_DB; CREATE USER $MYSQL_USER@localhost; SET PASSWORD FOR $MYSQL_USER@localhost=PASSWORD('$MYSQL_PASSWORD'); GRANT ALL PRIVILEGES ON $MYSQL_DB.* TO $MYSQL_USER@localhost IDENTIFIED BY '$MYSQL_PASSWORD'; FLUSH PRIVILEGES;" -pdevrootpass;
+    mysql -uroot -e "CREATE DATABASE $MYSQL_DB; CREATE USER ${MYSQL_USER}@localhost; SET PASSWORD FOR ${MYSQL_USER}@localhost=PASSWORD('${MYSQL_PASSWORD}'); GRANT ALL PRIVILEGES ON ${MYSQL_DB}.* TO ${MYSQL_USER}@localhost IDENTIFIED BY '${MYSQL_PASSWORD}'; FLUSH PRIVILEGES;" -pdevrootpass;
 else
     echo "DJANGO_PRODUCTION=true; no local database created"        
 fi
