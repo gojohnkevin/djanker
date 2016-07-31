@@ -1,5 +1,5 @@
 [general]
-DOCKER_IMAGE_NAME = gogokevingo/djanker
+DOCKER_IMAGE_NAME = gojohnkevin/djanker
 MYSQL_DB = djankerdb
 MYSQL_USER = djankeruser
 MYSQL_ROOT_PASSWORD = djankeruserpass
