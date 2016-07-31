@@ -27,6 +27,9 @@ RUN apt-get update && apt-get install -y \
 RUN easy_install pip
 
 # Handle urllib3 InsecurePlatformWarning
+RUN deb http://archive.ubuntu.com/ubuntu vivid main restricted universe
+RUN apt-cache policy libssl-dev
+RUN apt-get update
 RUN apt-get install -y libffi-dev libssl-dev libpython2.7-dev
 RUN pip install requests[security] ndg-httpsclient pyasn1 uwsgi
 
