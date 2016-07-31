@@ -47,26 +47,30 @@ RUN mkdir -p /opt/djanker-project/requirements /user-data
 #RUN pip install -r requirements.txt
 #RUN chmod ug+x /code/initialize.sh
 
+#python/pip - global
+#RUN virtualenv /opt/djanker-project/
+COPY requirements/djanker.txt /opt/djanker-project/requirements/
+
+#Copy the rest of the stuff over
+COPY . /opt/djanker-project
+
+RUN pip install --upgrade pip
+RUN pip install --exists-action w -r /opt/djanker-project/requirements/djanker.txt
+
+# Default folder is djanker app
+WORKDIR /opt/djanker-project
+
+# This init.sh entrypoint will ensure the environment is setup
+#ENTRYPOINT ["init.sh"]
+
+RUN chmod ug+x /opt/djanker-project/init.sh
+
 # Expose ports
 # 80 = Nginx
 # 8000 = Gunicorn
 # 3306 = MySQL
 EXPOSE 80 8000 3306
 
-# Default folder is djanker app
-WORKDIR /opt/djanker-project
-
-# This init.sh entrypoint will ensure the environment is setup
-ENTRYPOINT ["init.sh"]
-
-#python/pip - global
-#RUN virtualenv /opt/djanker-project/
-COPY requirements/djanker.txt /opt/djanker-project/requirements/
-RUN pip install --upgrade pip
-RUN pip install --exists-action w -r /opt/djanker-project/requirements/djanker.txt
-
-#Copy the rest of the stuff over
-COPY . /opt/djanker
 
 # Configure Nginx
 RUN ln -s /opt/djanker-project/nginx.conf.template /etc/nginx/sites-enabled/djanker.conf
