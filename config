@@ -6,15 +6,3 @@ MYSQL_ROOT_PASSWORD = djankeruserpass
 DJANGO_SUPERUSER_USERNAME = root
 DJANGO_SUPERUSER_PASSWORD = root
 DJANGO_SUPERUSER_EMAIL = root@root.com
-
-[production]
-SECRET_KEY = putsomethingreallylonghere
-HOST =  0.0.0.0                 ; IP address of your production server
-USE_PASSWORD = false            ; false = use SSH key authentication; true = use password
-USERNAME = root
-PASSWORD = root
-PUBLIC_KEY = ~/.ssh/id_dsa.pub  ; Your public SSH key
-DATABASE_HOST = 0.0.0.0         ; IP address of your database server
-DATABASE_USERNAME = root
-DATABASE_PASSWORD = rootpassword
-DATABASE_NAME = django
