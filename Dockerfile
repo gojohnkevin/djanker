@@ -9,6 +9,10 @@ ENV DJANGO_PRODUCTION=false
 # Set terminal to be noninteractive
 ENV DEBIAN_FRONTEND noninteractive
 
+# Enable MySQL root user creation without interactive input
+RUN echo 'mysql-server mysql-server/root_password password devrootpass' | debconf-set-selections
+RUN echo 'mysql-server mysql-server/root_password_again password devrootpass' | debconf-set-selections
+
 # Install packages
 RUN apt-get update && apt-get install -y \
     git \
