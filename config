@@ -1,8 +1,5 @@
 [general]
 DOCKER_IMAGE_NAME = gojohnkevin/djanker
-MYSQL_DB = djankerdb
-MYSQL_USER = djankeruser
-MYSQL_ROOT_PASSWORD = djankeruserpass
 DJANGO_SUPERUSER_USERNAME = root
 DJANGO_SUPERUSER_PASSWORD = root
 DJANGO_SUPERUSER_EMAIL = root@root.com

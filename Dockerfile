@@ -2,6 +2,8 @@ FROM ubuntu:14.04
 
 MAINTAINER kevin@thekevingo.com
 
+ARG DB_PASSWORD
+
 # Enable production settings by default; for development, this can be set to 
 # `true` in `docker run --env`
 ENV DJANGO_PRODUCTION=false
@@ -9,9 +11,13 @@ ENV DJANGO_PRODUCTION=false
 # Set terminal to be noninteractive
 ENV DEBIAN_FRONTEND noninteractive
 
+# Set database config
+ENV DB_NAME=djanker
+ENV DB_PASSWORD=djankerpass
+
 # Enable MySQL root user creation without interactive input
-RUN echo 'mysql-server mysql-server/root_password password devrootpass' | debconf-set-selections
-RUN echo 'mysql-server mysql-server/root_password_again password devrootpass' | debconf-set-selections
+RUN echo 'mysql-server mysql-server/root_password password djankerpass' | debconf-set-selections
+RUN echo 'mysql-server mysql-server/root_password_again password djankerpass' | debconf-set-selections
 
 # Install packages
 RUN apt-get update && apt-get install -y \
