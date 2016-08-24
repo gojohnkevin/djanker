@@ -3,7 +3,7 @@
 # supervisord) every time the Docker image is run.
 
 # If we're not in production, create a temporary dev database
-if [ "${DJANGO_PRODUCTION}" == "false" ]; then
+if [ "${DJANGO_PRODUCTION}" != "true" ]; then
     echo "DJANGO_PRODUCTION=false; creating local database..."
     # Wait until the MySQL daemon is running
     while [ "$(pgrep mysql | wc -l)" -eq 0 ] ; do
