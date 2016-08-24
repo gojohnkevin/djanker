@@ -1,2 +1,2 @@
 # djanker
-uWSGI, nGINX, MySQL, Django on Docker
+Django, MySQL, uWSGI, and nGINX in a Docker container

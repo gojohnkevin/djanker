@@ -77,9 +77,9 @@ WSGI_APPLICATION = 'djanker.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ['MYSQL_DB'],
-        'USER': os.environ['MYSQL_USER'],
-        'PASSWORD': os.environ['MYSQL_ROOT_PASSWORD'],
+        'NAME': os.environ['DB_NAME'],
+        'USER': 'root',
+        'PASSWORD': os.environ['DB_PASSWORD'],
     }
 }
 
