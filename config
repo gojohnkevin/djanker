@@ -1,5 +1,5 @@
 [general]
-DOCKER_IMAGE_NAME = gojohnkevin/djanker
+DOCKER_IMAGE_NAME = djanker
 DJANGO_SUPERUSER_USERNAME = root
 DJANGO_SUPERUSER_PASSWORD = root
 DJANGO_SUPERUSER_EMAIL = root@root.com

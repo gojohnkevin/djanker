@@ -1,3 +1,8 @@
+upstream djanker {
+    server 127.0.0.1:8001;
+}
+
+
 server {
     listen 80 default_server;
     access_log /logs/nginx/nginx.access.log;
@@ -27,7 +32,7 @@ server {
 
     # Finally, send all non-media requests to the Django server.
     location / {
-        uwsgi_pass  django;
+        uwsgi_pass  djanker;
         include     /opt/djanker-project/uwsgi_params;
     }
 }
