@@ -1,4 +1,4 @@
-upstream djanker {
+upstream django {
     server 127.0.0.1:8001;
 }
 
@@ -32,7 +32,7 @@ server {
 
     # Finally, send all non-media requests to the Django server.
     location / {
-        uwsgi_pass  djanker;
+        uwsgi_pass  django;
         include     /opt/djanker-project/uwsgi_params;
     }
 }
