@@ -46,17 +46,6 @@ RUN pip install requests[security] ndg-httpsclient pyasn1 uwsgi
 # Configure Django project
 RUN mkdir -p /opt/djanker-project/requirements /user-data 
 
-# Configure Django project
-#ADD . /code
-#RUN mkdir /djangomedia
-#RUN mkdir /static
-#RUN mkdir /logs
-#RUN mkdir /logs/nginx
-#RUN mkdir /logs/gunicorn
-#WORKDIR /code
-#RUN pip install -r requirements.txt
-#RUN chmod ug+x /code/initialize.sh
-
 #python/pip - global
 #RUN virtualenv /opt/djanker-project/
 COPY requirements/djanker.txt /opt/djanker-project/requirements/
@@ -83,9 +72,9 @@ EXPOSE 80 8000 3306
 
 
 # Configure Nginx
-RUN ln -s /opt/djanker-project/nginx.conf.template /etc/nginx/sites-enabled/djanker.conf
+RUN ln -s /opt/djanker-project/configs/nginx.conf.template /etc/nginx/sites-enabled/djanker.conf
 RUN rm /etc/nginx/sites-enabled/default
 
 # Run Supervisor (i.e., start MySQL, Nginx, and Gunicorn)
-RUN ln -s /opt/djanker-project/supervisord.conf.template /etc/supervisor/conf.d/supervisord.conf
+RUN ln -s /opt/djanker-project/configs/supervisord.conf.template /etc/supervisor/conf.d/supervisord.conf
 CMD ["/usr/bin/supervisord"]

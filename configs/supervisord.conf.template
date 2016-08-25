@@ -30,7 +30,7 @@ priority=20
 ;priority=20
 
 [program:uwsgi]
-command = /usr/local/bin/uwsgi --ini /opt/djanker-project/uwsgi.ini
+command = /usr/local/bin/uwsgi --ini /opt/djanker-project/configs/uwsgi.ini
 autostart=true
 autorestart=true
 priority=20

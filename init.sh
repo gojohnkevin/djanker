@@ -31,7 +31,7 @@ if [ "${DJANGO_PRODUCTION}" != "true" ]; then
     # We're in the dev environment
     if [ "${DJANGO_SUPERUSER_PASSWORD}" == "" ]; then
         # Root password environment variable is not set; so, load it from config.ini
-        echo "import os; from ConfigParser import SafeConfigParser; parser = SafeConfigParser(); parser.read('/opt/djanker-project/config'); from django.contrib.auth.models import User; print 'Root user already exists' if User.objects.filter(username=parser.get('general', 'DJANGO_SUPERUSER_USERNAME')) else User.objects.create_superuser(parser.get('general', 'DJANGO_SUPERUSER_USERNAME'), parser.get('general', 'DJANGO_SUPERUSER_EMAIL'), parser.get('general', 'DJANGO_SUPERUSER_PASSWORD'))" | python /opt/djanker-project/djanker/manage.py shell
+        echo "import os; from ConfigParser import SafeConfigParser; parser = SafeConfigParser(); parser.read('/opt/djanker-project/config.ini'); from django.contrib.auth.models import User; print 'Root user already exists' if User.objects.filter(username=parser.get('general', 'DJANGO_SUPERUSER_USERNAME')) else User.objects.create_superuser(parser.get('general', 'DJANGO_SUPERUSER_USERNAME'), parser.get('general', 'DJANGO_SUPERUSER_EMAIL'), parser.get('general', 'DJANGO_SUPERUSER_PASSWORD'))" | python /opt/djanker-project/djanker/manage.py shell
     else
         # Root password environment variable IS set; so, use it
         echo "import os; from django.contrib.auth.models import User; print 'Root user already exists' if User.objects.filter(username='root') else User.objects.create_superuser(os.environ['DJANGO_SUPERUSER_USERNAME'], os.environ['DJANGO_SUPERUSER_EMAIL'], os.environ['DJANGO_SUPERUSER_PASSWORD'])" | python /opt/djanker-project/djanker/manage.py shell
